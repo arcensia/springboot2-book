@@ -8,9 +8,9 @@ public class HelloResponseDtotest {
     public void lombok_test(){
         String name = "test";
         int amount = 1000;
-        HelloResponseDto dto= new HelloResponseDto(name, amount)
-        Assertions.assertThat(dto.name()).isEqualTo(name);
-        Assertions.assertThat(dto.amount()).isEqualTo(amount);
+        HelloResponseDto dto= new HelloResponseDto(name, amount);
+        Assertions.assertThat(dto.getName()).isEqualTo(name);
+        Assertions.assertThat(dto.getAmount()).isEqualTo(amount);
 
 //        원본소스
 //        HelloResponseDto dto = new HelloResponseDto(name, amount);

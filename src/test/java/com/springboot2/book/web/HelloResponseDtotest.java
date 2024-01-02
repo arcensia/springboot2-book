@@ -26,6 +26,6 @@ public class HelloResponseDtotest {
 // 해결: gradle버전이 맞지않아 lombok를 제대로 가져오지 못했다.
 // 해결방법
 // implementation 'org.projectlombok:lombok' 이는 gradle 5.x 이하 버전에서 동작한다. <- 책에서 사용하는 버전.
-// 현재 프로젝트는 Gradle 8.5를 사용하므로 gradle 5.x 이상 버전에서 lombok을 동작하도록 하였다.
+// gradle 5.x 이상 버전에서 lombok을 동작하도록 되어있어 현재 프로젝트인 Gradle 8.5에 동작하도록 변경하였다.
 // compileOnly 'org.projectlombok:lombok'
 // annotationProcessor 'org.projectlombok:lombok'

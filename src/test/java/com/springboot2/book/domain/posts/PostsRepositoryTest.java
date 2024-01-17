@@ -28,9 +28,11 @@ public class PostsRepositoryTest {
     public void bring_board(){
         String title = "테스트 게시글";
         String content = "테스트 본문";
+
         postsRepository.save(Posts.builder()
                 .title(title)
-                .content(content));
+                .content(content)
+                .build());
 //        postsRepository.save(Posts.builder()
 //                .title(title)
 //                .content(content));

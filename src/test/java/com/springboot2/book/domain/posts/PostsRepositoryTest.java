@@ -2,6 +2,7 @@ package com.springboot2.book.domain.posts;
 
 import com.springboot2.book.domain.post.Posts;
 import com.springboot2.book.domain.post.PostsRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,9 +31,11 @@ public class PostsRepositoryTest {
         String content = "테스트 본문";
 
         postsRepository.save(Posts.builder()
-                .title(title)
-                .content(content)
-                .build());
+                        .title(title)
+                        .content(content)
+                        .author("zxcklwe@naver.com")
+                        .build());
+
 //        postsRepository.save(Posts.builder()
 //                .title(title)
 //                .content(content));
@@ -41,9 +44,10 @@ public class PostsRepositoryTest {
         List<Posts> postsList = postsRepository.findAll();
 
         //then
-        Posts posts = postsList.get(0);
-        // assertThat(post.getTitle()).isEqualTo(title);
-        // assertThat(post.getContent()).isEqualTo(content);
+        Posts posts = postsList.getFirst();
+//        Posts posts = postsList.get(0);
+        Assertions.assertThat(posts.getTitle()).isEqualTo(title);
+        Assertions.assertThat(posts.getContent()).isEqualTo(content);
 
 
     }

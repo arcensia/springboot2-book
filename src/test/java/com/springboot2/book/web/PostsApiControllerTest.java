@@ -1,34 +1,33 @@
 package com.springboot2.book.web;
 
 
+import com.springboot2.book.domain.post.Posts;
 import com.springboot2.book.domain.post.PostsRepository;
 import com.springboot2.book.dto.PostsSaveRequestDto;
-import com.springboot2.book.service.PostsService;
-import lombok.RequiredArgsConstructor;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-@RestController
-@RequiredArgsConstructor
+import java.util.List;
+
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PostsApiControllerTest {
-
-    private final PostsService postsService;
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    private TestRestTemplate testRestTemplate;
+    private TestRestTemplate restTemplate;
 
     @Autowired
     private PostsRepository postsRepository;
-
 
     @AfterEach
     public void tearDown(){
@@ -40,18 +39,23 @@ public class PostsApiControllerTest {
         //given
         String title = "title";
         String content = "content";
-        String auth = "auth";
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .title(title)
+                .content(content)
+                .author("author")
+                .build();
 
         String url = "\"http://localhost:\" + port + \"/api/v1/posts";
 
         //when
-        ResponseEntity<Long› responseEntity - restTemplate.postForEntity(url, requestDto, Long.class);
-    }
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+        //then
+        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
-    @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto){
-
-        return postsService.save(requestDto);
+        List<Posts> all = postsRepository.findAll();
+        Assertions.assertThat(all.get(0).getTitle()).isEqualTo(title);
+        Assertions.assertThat(all.get(0).getContent()).isEqualTo(content);
 
     }
 }

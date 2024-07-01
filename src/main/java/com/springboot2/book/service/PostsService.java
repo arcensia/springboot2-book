@@ -2,7 +2,7 @@ package com.springboot2.book.service;
 
 
 import com.springboot2.book.domain.post.PostsRepository;
-import com.springboot2.book.dto.PostsSaveRequestDto;
+import com.springboot2.book.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

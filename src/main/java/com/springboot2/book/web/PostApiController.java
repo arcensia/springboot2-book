@@ -1,7 +1,7 @@
 package com.springboot2.book.web;
 
 
-import com.springboot2.book.dto.PostsSaveRequestDto;
+import com.springboot2.book.web.dto.PostsSaveRequestDto;
 import com.springboot2.book.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,6 @@ public class PostApiController {
 
     @PostMapping("api/v1/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto){
-
-        return save(requestDto);
+        return postsService.save(requestDto);
     }
 }

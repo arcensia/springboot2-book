@@ -1,4 +1,4 @@
-package com.springboot2.book.dto;
+package com.springboot2.book.web.dto;
 
 
 import com.springboot2.book.domain.post.Posts;

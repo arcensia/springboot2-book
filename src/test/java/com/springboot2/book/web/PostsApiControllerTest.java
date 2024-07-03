@@ -87,57 +87,17 @@ public class PostsApiControllerTest {
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
 
+        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+
         //when
-        mvc.perform(put(url)
-                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
+        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
 
         //then
+        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
         List<Posts> all = postsRepository.findAll();
-        Assertions.assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle); // <- assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
-        Assertions.assertThat(all.get(0).getContent()).isEqualTo(expectedContent); // <- assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
-
-
-
-        // 아래는 책내용
-//        //given
-//        Posts savedPosts = postsRepository.save(Posts.builder()
-//            .title("title")
-//            .content("content")
-//            .author("author")
-//            .build());
-//
-//        Long updateId = savedPosts.getId();
-//        String expectedTitle = "title2";
-//        String expectedContent = "content2";
-//
-//        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
-//            .title(expectedTitle)
-//            .content(expectedContent)
-//            .build();
-//        String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
-//
-//        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
-//
-
-//        //when
-////        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
-////        // 실제 API 응답이 Long 타입이 아니라 JSON 객체로 반환되고있음.
-////        // ?
-//        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class);
-//
-//        //then
-//        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-//
-//
-//        //then
-//        Assertions.assertThat(responseId).isGreaterThan(0L);
-//
-//        List<Posts> all = postsRepository.findAll();
-//        Assertions.assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
-//        Assertions.assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
-
+        Assertions.assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
+        Assertions.assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
 
     }
 }

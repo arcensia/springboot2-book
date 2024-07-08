@@ -28,12 +28,15 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'com.h2database:h2'
 
-    // 테스트 코드에서 
+    // 테스트 코드에서
     testCompileOnly 'org.projectlombok:lombok:1.18.24' // 테스트 의존성 추가
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24' // 테스트 의존성 추가
+
 }
 
 tasks.named('test') {

@@ -13,11 +13,11 @@ public class IndexControllertest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void 페이지_로딩(){
+    public void 메인페이지_로딩(){
         //when
-        String body = restTemplate.getForObject("/", String.class);
+        String body = this.restTemplate.getForObject("/", String.class);
 
         //then
-        Assertions.assertThat(body).contains("스프링 부트로 시작하는 웹 서비스");
+        Assertions.assertThat(body).contains("Web service implemented with Spring Boot and AWS\n");
     }
 }

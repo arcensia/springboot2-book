@@ -6,6 +6,7 @@ import com.springboot2.book.domain.post.PostsRepository;
 import com.springboot2.book.web.dto.PostsResponseDto;
 import com.springboot2.book.web.dto.PostsSaveRequestDto;
 import com.springboot2.book.web.dto.PostsUpdateRequestDto;
+import com.springboot2.book.web.dto.PostsListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,7 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsResponseDto> findAllDesc(){
+    public List<PostsListResponseDto> findAllDesc(){
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());

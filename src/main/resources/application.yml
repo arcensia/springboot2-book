@@ -11,3 +11,9 @@ spring:
   h2:
     console:
       enabled: true
+
+# 스프링부트 버전업으로인해, 인코딩이 깨짐.
+server:
+  servlet:
+    encoding:
+      force: true

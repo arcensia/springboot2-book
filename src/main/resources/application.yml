@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include:
   jpa:
     hibernate:
       ddl-auto: update # or create-drop for recreation of tables on every start
@@ -11,6 +13,7 @@ spring:
   h2:
     console:
       enabled: true
+
 
 # 스프링부트 버전업으로인해, 인코딩이 깨짐.
 server:

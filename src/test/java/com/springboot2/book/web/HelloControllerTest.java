@@ -9,9 +9,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@SpringBootTest //@ExtendWith(SpringExtension.class) <- @RunWith(SpringRunner.class) junit5로 넘어오면서 사라졌다.
-//                // 또한 @SpringBootTest 어노테이션에 포함되도록 변경되었다.
-//@ExtendWith(SpringExtension.class)
+// @SpringBootTest //@ExtendWith(SpringExtension.class) <- @RunWith(SpringRunner.class) junit5로 넘어오면서 사라졌다.
+// 또한 @SpringBootTest 어노테이션에 포함되도록 변경되었다.
+// @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = HelloController.class)
 public class HelloControllerTest {
     @Autowired

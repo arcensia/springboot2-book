@@ -13,6 +13,8 @@ spring:
   h2:
     console:
       enabled: true
+  session:
+    store-type: jdbc
 
 
 # 스프링부트 버전업으로인해, 인코딩이 깨짐.

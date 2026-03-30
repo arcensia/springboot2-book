@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include:
+    include: oauth
   jpa:
     hibernate:
       ddl-auto: update # or create-drop for recreation of tables on every start

@@ -1,14 +1,17 @@
 spring:
   jpa:
+    hibernate:
+      ddl-auto: create-drop
     show_sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.H2Dialect
   h2:
     console:
       enabled: true
-    session:
-      store-type: jdbc
+
+  session:
+    store-type: jdbc
 
   #Test OAuth
   security:

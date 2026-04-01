@@ -18,6 +18,6 @@ public class IndexControllertest {
         String body = this.restTemplate.getForObject("/", String.class);
 
         //then
-        Assertions.assertThat(body).contains("Web service implemented with Spring Boot and AWS\n");
+        Assertions.assertThat(body).contains("/js/app/index.js");
     }
 }
